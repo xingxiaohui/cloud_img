@@ -1,10 +1,62 @@
 <html>
 <head>
-    <title>图床</title>
+    <title>萌图图床</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <link rel="stylesheet" href="../static/style/index.css">
 </head>
 <body>
-    <div>
-        图床
+    <div class="layui-container home-body">
+        <div class="layui-row" >
+            <div class="layui-col-md2 layui-col-md-offset5" id="top-bar">
+                  <h1>萌图图床</h1>
+            </div>
+            <div class="layui-col-md2 layui-col-md-offset4">
+
+            </div>
+        </div>
+        <div class="layui-row" >
+            <div class="layui-col-md6 layui-col-md-offset3 text-center">
+                <p>萌图图床-高速稳定的图片上传和外链服务</p>
+                <p>七牛CDN加速, 最大单张支持 10 MB, 支持批量上传</p>
+                <p>本站启用自动检测技术, 禁止上传色情/反动/博彩/黑产等违法图片</p>
+                <p>一经发现, 立即删除该用户/IP下所有图片, 并永久封IP</p>
+                <div class="upload-button">
+                    <button type="button" class="layui-btn layui-btn-danger" id="upload">
+                        <i class="layui-icon">&#xe67c;</i>上传图片
+                    </button>
+                </div>
+            </div>
+            <div class="layui-row layui-col-md12" id="res-box">
+                <div class="layui-col-md6 layui-col-md-offset3 text-center">
+                    <p id="notice">上传成功</p>
+                    <div class="layui-row url-box">
+                        <input name="url" id="url" class="layui-input layui-input-inline" type="text" style="width: 588px;" autocomplete="off"/>
+                        <button type="button" class="layui-btn layui-btn-normal layui-input-inline" id="copy">
+                            复制地址
+                        </button>
+                    </div>
+                    <div class="layui-row url-box">
+                        <input name="url" id="html-url" class="layui-input layui-input-inline" type="text" style="width: 588px;" autocomplete="off"/>
+                        <button type="button" class="layui-btn layui-btn-normal layui-input-inline" id="html-copy">
+                            复制Html
+                        </button>
+                    </div>
+                    <div class="layui-row url-box">
+                        <button type="button" class="layui-btn layui-btn-normal layui-input-inline" id="preview">
+                           预览图片
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row bottom-bar" >
+        <div class="layui-col-md4 layui-col-md-offset4">
+            <p>2019-2020 <a href="https://www.uxahz.com" target="_blank">UXAHZ.COM</a> 萌图图床 版权所有.</p>
+            <p>免费公共图床, 提供高速稳定的图片分享与云存储服务.</p>
+        </div>
     </div>
 </body>
+<script src="../static/layui/layui.js"></script>
+<script src="../static/js/index.js"></script>
 </html>
