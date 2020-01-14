@@ -1,2 +1,3 @@
-.idea
-cloud_img/__pycache__
+.idea/
+cloud_img/__pycache__/
+
