@@ -3,8 +3,8 @@ import uuid
 
 from flask import render_template, json, request
 from werkzeug.utils import secure_filename
-
 from cloud_img import app
+from cloud_img import qiniu_sdk
 
 # 设置允许的文件格式
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'bmp'])
@@ -19,6 +19,7 @@ def index():
     return render_template('index.html')
 
 
+# 上传到本地/已弃用
 @app.route('/upload/', methods={'post'})
 def upload():
     f = request.files['file']
@@ -34,3 +35,24 @@ def upload():
     return json.dumps({"code": 200,
                        "msg": '上传成功！',
                        "url": url})
+
+
+# 上传到七牛云
+@app.route('/upload/qiniu/', methods={'post'})
+def qiniu_upload():
+    file = request.files['file']
+    if not (file and allowed_file(file.filename)):
+        return json.dumps({"code": 500, "msg": '文件格式有误！'})
+
+    # 需要对文件进行裁剪等操作
+    if file.filename.find('.') > 0:
+        file_ext = file.filename.rsplit('.', 1)[1].strip().lower()
+        file_name = str(uuid.uuid1()).replace('-', '') + '.' + file_ext
+        url = qiniu_sdk.qiniu_upload_file(file, file_name)
+        if url is not None:
+            return json.dumps({"code": 200,
+                               "msg": '上传成功！',
+                               "url": url})
+
+    return json.dumps({"code": 500,
+                       "msg": '上传失败！'})

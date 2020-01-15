@@ -7,7 +7,7 @@ layui.use(['layer','upload'], function(){
     //执行实例
     var uploadInst = upload.render({
         elem: '#upload' //绑定元素
-        ,url: '/upload/' //上传接口
+        ,url: '/upload/qiniu/' //上传接口
         ,accept: 'images' //允许上传的文件类型
         ,size: 10240 //最大允许上传的文件大小
         ,done: function(res){
@@ -17,6 +17,8 @@ layui.use(['layer','upload'], function(){
                 $('#url').val(res.url);  // res.url为上传后的文件url
                 preview_url = '<img src="'+res.url+'">'
                 $('#html-url').val(preview_url);
+                mkd_url = '![avatar]('+ res.url +')'
+                $('#mkd-url').val(mkd_url);
                 $("#notice").html(res.msg);
                 $("#res-box").show();
             } else {
@@ -34,6 +36,10 @@ layui.use(['layer','upload'], function(){
     });
     $("#html-copy").click(function(){
         var url = $("#html-url").select();
+        $("#notice").html("您的浏览器禁用了复制功能，请使用Ctrl+C复制！");
+    });
+    $("#mkd-copy").click(function(){
+        var url = $("#mkd-url").select();
         $("#notice").html("您的浏览器禁用了复制功能，请使用Ctrl+C复制！");
     });
     $("#preview").click(function(){
